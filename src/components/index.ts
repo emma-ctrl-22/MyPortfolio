@@ -5,3 +5,8 @@ export { default as Navbar } from './Navbar';
 export { default as AnimatedTextCharacter } from './AnimatedTextCharacter';
 export { default as Experience } from './Experience';
 export { default as AnimatedBackground } from './AnimatedBackground';
+export { default as ProjectShowcase } from './ProjectShowcase';
+export { default as TechStack } from './TechStack';
+export { default as AboutMe } from './AboutMe';
+export { default as CallToActionSection } from './SpinningTextSection';
+export { default as ContactPopup } from './ContactPopup';

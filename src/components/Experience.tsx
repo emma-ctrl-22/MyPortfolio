@@ -1,39 +1,169 @@
-const ExperienceItem = ({ title, company, duration, description }: {
-  title: string;
-  company: string;
-  duration: string;
-  description: string;
-}) => {
+"use client";
+
+import { forwardRef, useRef } from "react";
+import { AnimatedBeam } from "./magicui/animated-beam";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+// import Image from "next/image"; // Keep commented out until real images are ready
+
+// Re-define Circle component locally for Experience, slightly larger
+const Circle = forwardRef<
+  HTMLDivElement,
+  { className?: string; children?: React.ReactNode; title?: string } // Added title for accessibility/tooltip if needed
+>(({ className, children, title }, ref) => {
   return (
-    <div className="mb-8 p-4 border border-gray-700 rounded-lg bg-gray-800/50">
-      <h3 className="text-xl font-semibold text-blue-400">{title}</h3>
-      <p className="text-md text-gray-400 italic mb-1">{company} | {duration}</p>
-      <p className="text-gray-300 text-sm leading-relaxed">
-        {description}
-      </p>
+    <div
+      ref={ref}
+      title={title} // Optional: Add title attribute
+      className={cn(
+        "z-10 flex size-16 items-center justify-center rounded-full border-2 bg-white/10 shadow-[0_0_20px_-12px_rgba(0,0,0,0.3)] backdrop-blur-sm overflow-hidden",
+        className
+      )}
+    >
+      {children}
     </div>
   );
-};
+});
+
+Circle.displayName = "Circle";
 
 const Experience = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const startRef = useRef<HTMLDivElement>(null);
+  const hospitalRef = useRef<HTMLDivElement>(null);
+  const wigalRef = useRef<HTMLDivElement>(null);
+  const kamakRef = useRef<HTMLDivElement>(null);
+  const tech231Ref = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
+
+  // Define nodes with specific vertical offsets for parent divs
+  const nodes = [
+    { 
+      id: "start", 
+      ref: startRef, 
+      title: "Start", 
+      color: "border-blue-500", 
+      content: <span className="text-blue-500 font-bold text-xl">→</span>, 
+      verticalOffset: "md:translate-y-0" 
+    },
+    {
+      id: "hospital",
+      ref: hospitalRef,
+      title: "Junior Network Engineer (Intern)",
+      company: "37 Military Hospital",
+      duration: "Internship",
+      color: "border-cyan-500",
+      placeholderBg: "bg-cyan-900/50",
+      textColor: "text-cyan-400",
+      companyColor: "text-cyan-500",
+      verticalOffset: "md:-translate-y-8" // Sketch: Slightly up
+    },
+    {
+      id: "wigal",
+      ref: wigalRef,
+      title: "Frontend Developer (Intern)",
+      company: "Wigal",
+      duration: "Internship",
+      color: "border-emerald-500",
+      placeholderBg: "bg-emerald-900/50",
+      textColor: "text-emerald-400",
+      companyColor: "text-emerald-500",
+      verticalOffset: "md:-translate-y-12" // Sketch: Bit higher
+    },
+    {
+      id: "kamak",
+      ref: kamakRef,
+      title: "Software Engineer",
+      company: "Kamak Paperless",
+      duration: "Full-time",
+      color: "border-indigo-500",
+      placeholderBg: "bg-indigo-900/50",
+      textColor: "text-indigo-400",
+      companyColor: "text-indigo-500",
+      verticalOffset: "md:-translate-y-48" // Sketch: Much higher
+    },
+    {
+      id: "tech231",
+      ref: tech231Ref,
+      title: "Software Engineer",
+      company: "Tech231 Liberia",
+      duration: "Current",
+      color: "border-amber-500",
+      placeholderBg: "bg-amber-900/50",
+      textColor: "text-amber-400",
+      companyColor: "text-amber-500",
+      verticalOffset: "md:-translate-y-40" // Sketch: High, slightly below Kamak
+    },
+    { 
+      id: "end", 
+      ref: endRef, 
+      title: "End", 
+      color: "border-gray-500", 
+      content: <span className="text-gray-500 font-bold text-xl">✓</span>, 
+      verticalOffset: "md:translate-y-24" // Sketch: Lower balance point
+    },
+  ];
+
+  // Define beams connecting the node refs (parent divs)
+  // Apply offsets to visually target the Circle center within the parent div
+  const beams = [
+    { from: startRef, to: hospitalRef, startOffset: 0, endOffset: -32 },   // Start(center) -> Hospital(top) -> Offset needed at end
+    { from: hospitalRef, to: wigalRef, startOffset: -32, endOffset: -32 }, // Hospital(top) -> Wigal(top) -> Offset needed at both
+    { from: wigalRef, to: kamakRef, startOffset: -32, endOffset: -32 },    // Wigal(top) -> Kamak(top) -> Offset needed at both
+    { from: kamakRef, to: tech231Ref, startOffset: -32, endOffset: -32 }, // Kamak(top) -> Tech231(top) -> Offset needed at both
+    { from: tech231Ref, to: endRef, startOffset: -32, endOffset: 0 },     // Tech231(top) -> End(center) -> Offset needed at start
+  ];
+
   return (
-    <section id="experience" className="flex flex-col gap-6 scroll-mt-24">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-100">Experience</h2>
-      {/* Placeholder Experience Items - Replace with your actual experience */}
-      <ExperienceItem
-        title="Placeholder Role 1"
-        company="Placeholder Company A"
-        duration="Jan 202X - Present"
-        description="Describe your key responsibilities and achievements here. Focus on impact and technologies used."
-      />
-      <ExperienceItem
-        title="Placeholder Role 2"
-        company="Placeholder Company B"
-        duration="May 202Y - Dec 202X"
-        description="Another example of a role. Mention specific projects or contributions if possible."
-      />
-      {/* Add more ExperienceItem components as needed */}
-    </section>
+    <div
+      className="min-h-[85vh] w-full p-6 md:px-16 md:py-2 relative overflow-hidden flex items-center justify-center"
+      ref={containerRef}
+    >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="flex flex-col md:flex-row items-center md:items-stretch justify-between h-full w-full gap-12 md:gap-16"
+      >
+        {/* Map through nodes, assign ref to the PARENT div */} 
+        {nodes.map((node) => (
+          <div
+            key={node.id}
+            ref={node.ref} // Assign ref to the parent div
+            className={cn(
+              "flex flex-col items-center text-center md:text-left gap-3 flex-1 transition-transform duration-500 ease-out", // Slower transition
+              node.verticalOffset // Apply specific translate class
+            )}
+          >
+            {/* Pass a dummy ref or no ref to Circle now */}
+            <Circle className={`${node.color} bg-gray-900/30`} title={node.title}>
+              {node.content ? node.content : <div className={cn("w-10 h-10 rounded-full", node.placeholderBg)}></div>}
+            </Circle>
+            {node.company && (
+              <div className="w-full md:max-w-xs"> 
+                <p className={`font-semibold text-sm ${node.textColor}`}>{node.title}</p>
+                <p className={`text-xs mt-1 ${node.companyColor}`}>{node.company}</p>
+                <p className="text-gray-400 text-xs mt-0.5">{node.duration}</p>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Map through beams, apply revised offsets */} 
+        <div className="absolute top-0 left-0 w-full h-full hidden md:block pointer-events-none"> 
+          {beams.map((beam, index) => (
+            <AnimatedBeam
+              key={index}
+              containerRef={containerRef}
+              fromRef={beam.from}
+              toRef={beam.to}
+              startYOffset={beam.startOffset} // Revised offset
+              endYOffset={beam.endOffset}   // Revised offset
+              duration={4 + index * 0.5} 
+            />
+          ))}
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

@@ -42,8 +42,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative z-10 border-t border-gray-800/50 mt-16 sm:mt-24 bg-black">
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 py-12">
+    <footer className="relative z-10 border-t border-gray-800/50 bg-black">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 pt-0 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Left Section: Logo/Name & Scroll to top */}
           <div className="flex flex-col items-center md:items-start">

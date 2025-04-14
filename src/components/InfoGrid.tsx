@@ -10,7 +10,9 @@ import { slugs } from '@/utils/stack-icons';
 import { IconCloud } from './magicui/icon-cloud';
 import { FaGithub, FaLinkedinIn, FaRobot, FaTwitter, FaRegCopy } from "react-icons/fa";
 import { OrbitingCircles } from './magicui/orbiting-circles';
-
+import { FaWhatsapp, FaPhoneAlt, FaSnapchat } from 'react-icons/fa';
+import EducationalTimeline from './EducationalTimeline';
+import { FcGraduationCap } from "react-icons/fc";
 const InfoGrid = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -21,7 +23,7 @@ const InfoGrid = () => {
   const initialPhi = useRef(0);
   const initialTheta = useRef(0);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
-
+  const [activeColor, setActiveColor] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleCopy = async () => {
@@ -37,29 +39,53 @@ const InfoGrid = () => {
     }
   };
 
-  // Placeholder handles (replace with your actual values)
+  // Updated social handles with new entries
   const socialHandles = {
-    linkedin: 'linkedin.com/in/yourprofile',
     github: 'github.com/yourusername',
-    twitter: 'twitter.com/yourhandle',
-    email: 'contact@yourdomain.com'
+    email: 'contact@yourdomain.com',
+    linkedin: 'linkedin.com/in/yourprofile',
+    whatsapp: '+1234567890',
+    phone: '+1234567890',
+    snapchat: 'your.snapchat'
   };
 
-  const handleOrbitClick = (orbitType: 'primary' | 'secondary', index: number) => {
-    const handles = {
-      primary: [
-        socialHandles.linkedin,
-        socialHandles.github,
-        socialHandles.twitter
-      ],
-      secondary: [
-        socialHandles.email,
-        socialHandles.github,
-        socialHandles.twitter
-      ]
-    };
-    setSelectedHandle(handles[orbitType][index]);
+  // Set the handle directly when an icon is clicked
+  const setGithubHandle = () => {
+    setSelectedHandle(socialHandles.github);
+    setActiveColor('purple-400');
   };
+
+  const setLinkedinHandle = () => {
+    setSelectedHandle(socialHandles.linkedin);
+    setActiveColor('blue-400');
+  };
+
+  const setWhatsappHandle = () => {
+    setSelectedHandle(socialHandles.whatsapp);
+    setActiveColor('green-400');
+  };
+
+  const setEmailHandle = () => {
+    setSelectedHandle(socialHandles.email);
+    setActiveColor('red-400');
+  };
+
+  const setPhoneHandle = () => {
+    setSelectedHandle(socialHandles.phone);
+    setActiveColor('cyan-400');
+  };
+
+  const setSnapchatHandle = () => {
+    setSelectedHandle(socialHandles.snapchat);
+    setActiveColor('yellow-400');
+  };
+
+  // Gradient animation for output box
+  const outputBoxStyle = `w-full mt-4 p-4 rounded-lg border bg-gradient-to-br transition-all duration-300 
+  ${selectedHandle ?
+      'from-blue-400/20 to-purple-400/20 border-blue-400/50' :
+      'border-white/10 bg-transparent'}`;
+
 
   // Toast animation variants
   const toastVariants = {
@@ -142,10 +168,10 @@ const InfoGrid = () => {
 
   return (
     <motion.section
-      className="p-4 flex flex-row self-center gap-4 h-[90vh] w-[90vw]"
+      className="p-4 sm:p-6 flex flex-col lg:flex-row self-center gap-4 lg:gap-6 w-full lg:w-[90vw] min-h-screen lg:h-[90vh]"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }} // Animate when 10% is visible
+      viewport={{ once: true, amount: 0.1 }}
     >
       <AnimatePresence>
         {toastMessage && (
@@ -155,111 +181,122 @@ const InfoGrid = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed bottom-8 right-8 bg-gray-800/80 backdrop-blur-lg px-6 py-3 rounded-lg border border-white/10"
+            className="fixed bottom-8 z-50 right-8 bg-gray-800/80 backdrop-blur-lg px-6 py-3 rounded-lg border border-white/10"
           >
             <span className="text-blue-400">{toastMessage}</span>
           </motion.div>
         )}
       </AnimatePresence>
-      <div className='w-2/3 h-full flex flex-col gap-4'>
-        <div className='bg-transparent backdrop-blur-lg border border-white/10 flex flex-col md:flex-row w-full h-1/2 rounded-lg'>
-          {/* Left Orbit Section */}
-          <div className='relative h-full w-1/2 overflow-hidden flex items-center justify-center'>
-            <OrbitingCircles
+      <div className='w-full lg:w-2/3 h-full flex flex-col gap-4 lg:gap-6'>
+        {/* Top Row: Contact Info - Stacks vertically on mobile, row on medium+ screens */}
+        <div className='bg-transparent backdrop-blur-lg border border-white/10 flex flex-col md:flex-row w-full h-auto md:h-1/2 rounded-lg p-4'>
+          {/* Left Orbit Section - Takes full width on mobile */}
+          <div className='relative h-64 md:h-full w-full md:w-1/2 overflow-hidden flex items-center justify-center'>
+            {/* ... OrbitingCircles ... */}            <OrbitingCircles
               iconSize={70}
               radius={120}
-              onClick={(index) => handleOrbitClick('primary', index)}
             >
-              <FaLinkedinIn size={30} className='cursor-pointer hover:text-blue-400' />
-              <FaGithub size={30} className='cursor-pointer hover:text-purple-400' />
-              <FaTwitter size={30} className='cursor-pointer hover:text-sky-400' />
+              <FaGithub 
+                size={30} 
+                className='cursor-pointer hover:text-purple-400' 
+                onClick={setGithubHandle}
+              />
+              <FaLinkedinIn 
+                size={30} 
+                className='cursor-pointer hover:text-blue-400' 
+                onClick={setLinkedinHandle}
+              />
+              <FaWhatsapp 
+                size={30} 
+                className='cursor-pointer hover:text-green-400' 
+                onClick={setWhatsappHandle}
+              />
             </OrbitingCircles>
 
             <OrbitingCircles
-              iconSize={50}
+              iconSize={60}
               radius={70}
               reverse
-              speed={2}
-              onClick={(index) => handleOrbitClick('secondary', index)}
             >
-              <FiMail className='cursor-pointer hover:text-red-400' />
-              <FaGithub className='cursor-pointer hover:text-purple-400' />
-              <FaTwitter className='cursor-pointer hover:text-sky-400' />
+              <FiMail 
+                className='cursor-pointer hover:text-red-400' 
+                onClick={setEmailHandle}
+              />
+              <FaPhoneAlt 
+                className='cursor-pointer hover:text-cyan-400' 
+                onClick={setPhoneHandle}
+              />
+              <FaSnapchat 
+                className='cursor-pointer hover:text-yellow-400' 
+                onClick={setSnapchatHandle}
+              />
             </OrbitingCircles>
           </div>
 
           {/* Right Content Section */}
-          <div className='w-1/2 flex flex-col justify-center items-start p-8 space-y-6'>
-            <h2 className='text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent'>
-              Let's work together on your next project
+          <div className='w-full md:w-1/2 flex flex-col justify-center items-start p-4 md:p-8 space-y-4 md:space-y-6'>
+            <h2 className='text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-center md:text-left w-full'>
+              Let's work together
             </h2>
-
-            <p className='text-sm text-gray-300'>
-              Click on any social icon in orbit to reveal contact information
+            <p className='text-sm text-gray-300 text-center md:text-left w-full'>
+              Click an icon to reveal contact info
             </p>
 
             {/* Output Box */}
-            <div
-              className={`w-full mt-4 p-4 rounded-lg border transition-all duration-300 ${selectedHandle
-                  ? 'border-blue-400/50 bg-blue-400/10'
-                  : 'border-white/10 bg-transparent'
-                }`}
-            >
+            <div className={`${outputBoxStyle} w-full`}> 
               <div className='flex items-center justify-between'>
-                <span className='text-gray-200'>
-                  {selectedHandle || 'Select a social icon to continue...'}
+                <span className='text-gray-200 font-mono tracking-wide'>
+                  {selectedHandle || 'None selected'}
                 </span>
-
                 {selectedHandle && (
                   <FaRegCopy
                     onClick={handleCopy}
-                    className={`cursor-pointer text-blue-400 transition-opacity ${selectedHandle ? 'opacity-100' : 'opacity-0'
-                      }`}
+                    className="cursor-pointer text-blue-400 hover:scale-110 transition-transform"
                   />
                 )}
               </div>
             </div>
           </div>
         </div>
-        <div className='w-full h-1/2 flex flex-row gap-4'>
-          <div className='bg-transparent backdrop-blur-lg border border-white/10 relative flex h-full w-1/2 rounded-lg items-center justify-center overflow-hidden'>
+        <div className='w-full h-auto lg:h-1/2 flex flex-col lg:flex-row gap-4 lg:gap-6'>
+          <div className='bg-transparent backdrop-blur-lg border border-white/10 relative flex h-full w-full md:w-1/2 rounded-lg items-center justify-center overflow-hidden'>
             <IconCloud
               images={images}
-
             />
             <div className="absolute top-4 left-4 flex items-center gap-2">
-              <h2 className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold text-xl">Tech Stack</h2>
-              <FaRobot className="w-8 h-8 animate-bounce" />
+              <h2 className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold text-lg md:text-xl">Tech Stack</h2>
+              <FaRobot className="w-6 h-6 md:w-8 md:h-8 animate-bounce" />
             </div>
           </div>
-          <div className='bg-orange-600 h-full w-1/2 rounded-lg'></div>
+          <div className=' relative h-full py-8 md:p-0 w-full md:w-1/2 rounded-lg backdrop-blur-lg border border-white/10'>
+            <EducationalTimeline />
+            <div className="absolute bottom-4 left-4 flex items-center gap-2">
+              <h2 className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold text-xl">Educational Background</h2>
+              <FcGraduationCap className='w-8 h-8' />
+            </div>
+          </div>
         </div>
       </div>
       <div
-        className='w-1/3 h-full rounded-2xl bg- backdrop-blur-lg border border-white/10 overflow-hidden relative'
+        className='w-full lg:w-1/3 h-[50vh] lg:h-full rounded-2xl backdrop-blur-lg border border-white/10 overflow-hidden relative mt-4 lg:mt-0 flex flex-col'
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
-        {/* Top Text */}
-        <h3 className="text-2xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-1 mt-4 px-6 pt-2 text-center">
-          I'm very flexible with time zone communications
+        <h3 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-1 mt-4 px-6 pt-2 text-center flex-shrink-0">
+         I Am Flexible Time Zones
         </h3>
-        <div className="relative flex items-center justify-center w-full h-[60%] flex-shrink-0  text-center overflow-hidden">
-          <Globe config={globeConfig} className="top-[50px]" /> {/* Adjust positioning with className */}
+        <div className="relative flex items-center justify-center w-full h-full">
+          <Globe config={globeConfig} />
         </div>
         <div className="absolute bottom-0 left-0 w-full z-10">
-          {/* Location display - always visible */}
           <div className="flex items-center px-6 py-4 text-gray-300 gap-2">
             <FiMapPin className="w-5 h-5 text-gray-400 flex-shrink-0" />
             <span className="text-lg">Accra, Ghana</span>
-            {/* Blinking Dot */}
             <span className="relative flex h-2 w-2 ml-1">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
           </div>
-
-          {/* Connect Now Link - Slides up on hover */}
           <div
             className={`w-full bg-gray-900/70 transform transition-transform duration-300 ease-in-out ${isHovering ? 'translate-y-0' : 'translate-y-full'
               }`}
@@ -273,7 +310,6 @@ const InfoGrid = () => {
           </div>
         </div>
       </div>
-
     </motion.section>
   );
 };

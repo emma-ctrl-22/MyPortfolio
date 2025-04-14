@@ -69,7 +69,45 @@
   0% {
     transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));}
   100% {
-    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));}}}
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));}}
+  @keyframes aurora {
+  0% {
+    backgroundPosition: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);}
+  25% {
+    backgroundPosition: 50% 100%;
+    transform: rotate(5deg) scale(1.1);}
+  50% {
+    backgroundPosition: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);}
+  75% {
+    backgroundPosition: 50% 0%;
+    transform: rotate(3deg) scale(1.05);}
+  100% {
+    backgroundPosition: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);}}
+  --animate-meteor: meteor 5s linear infinite;
+  @keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;}
+  70% {
+    opacity: 1;}
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;}}
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);}
+  to {
+    transform: translateX(calc(-100% - var(--gap)));}}
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);}
+  to {
+    transform: translateY(calc(-100% - var(--gap)));}}}
 
 body {
   font-family: var(--font-sans);
@@ -150,5 +188,47 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+
+    /* Firefox scrollbar basic styling */
+    scrollbar-width: thin;
+    scrollbar-color: theme(colors.gray.700) transparent;
   }
+}
+
+/* Webkit (Chrome, Safari, Edge, etc.) scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px; /* Make scrollbar thinner */
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; /* Transparent track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: theme(colors.gray.700); /* Subtle dark thumb color */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid transparent; /* Optional: adds padding around thumb */
+  background-clip: content-box; /* Ensures border acts as padding */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: theme(colors.gray.600); /* Slightly lighter on hover */
+}
+.projects-showcase {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.projects-showcase::-webkit-scrollbar {
+  display: none;
+}
+
+/* Footer positioning */
+footer {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+footer > * {
+  pointer-events: all;
 }
