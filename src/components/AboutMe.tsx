@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { ScratchToReveal } from "./magicui/scratch-to-reveal";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +18,12 @@ const AboutMe = () => {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const socials = {
+    linkedin: "https://linkedin.com/in/emmanuel-nyatepe-b27a82207",
+    github: "https://github.com/emma-ctrl-22",
+    whatsapp: "https://wa.me/233559925298"
   };
 
   return (
@@ -50,31 +56,31 @@ const AboutMe = () => {
           className="text-gray-300 leading-relaxed"
           variants={itemVariants}
         >
-          I&apos;m Emmanuel Nyatepe, a proactive full-stack developer passionate about 
+          I&apos;m Emmanuel Nyatepe (or Bhobu, as some know me!), a proactive full-stack software engineer based in Accra, Ghana. 
+          As an alumnus of Valley View University (VVU) and Bishop Herman College (BHOBUSCO), I have a passion for 
           creating dynamic web experiences. From frontend to backend, I thrive on 
-          solving complex problems with clean, efficient code. My expertise spans 
-          React, Next.js, and Node.js, and I&apos;m always eager to learn more.
+          solving complex problems with clean, efficient code using technologies like React, Next.js, and Node.js.
         </motion.p>
         <motion.p 
           className="text-gray-300 leading-relaxed"
           variants={itemVariants}
         >
-          When I&apos;m not coding, I&apos;m exploring new ideas and staying curious about life&apos;s 
-          about balance, and I love embracing every part of it.
+          When I&apos;m not coding, I&apos;m exploring new ideas and staying curious. I love embracing every part of life 
+          and I&apos;m always eager to learn more, whether it&apos;s new tech or just understanding different perspectives.
         </motion.p>
         <motion.p 
           className="text-gray-300 leading-relaxed font-medium"
           variants={itemVariants}
         >
-          I believe in waking up each day eager to make a difference!
+          I believe in waking up each day eager to make a difference, and I&apos;m currently open to new full-time and freelance opportunities!
         </motion.p>
         <motion.div 
           className="flex items-center gap-6 pt-4"
           variants={itemVariants}
         >
-          <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors"><FaLinkedinIn size={20} /></a>
-          <a href="#" aria-label="GitHub" className="text-gray-400 hover:text-white transition-colors"><FaGithub size={20} /></a>
-          <a href="#" aria-label="Twitter" className="text-gray-400 hover:text-white transition-colors"><FaTwitter size={20} /></a>
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors"><FaLinkedinIn size={20} /></a>
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-gray-400 hover:text-white transition-colors"><FaGithub size={20} /></a>
+          <a href={socials.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-gray-400 hover:text-white transition-colors"><FaWhatsapp size={20} /></a>
         </motion.div>
       </motion.div>
 

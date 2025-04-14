@@ -4,7 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     domains: ['cdn.simpleicons.org'],
+    unoptimized: true,
   },
+  output: 'export',
 };
 
 export default nextConfig;

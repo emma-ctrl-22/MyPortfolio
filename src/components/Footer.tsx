@@ -4,36 +4,35 @@ import Link from 'next/link';
 import {
   FiGithub,
   FiLinkedin,
-  FiTwitter,
   FiHeart,
   FiCode,
   FiArrowUpCircle,
-} from 'react-icons/fi'; // Import icons
+} from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   const navItems = [
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Tech', href: '#tech' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const socialLinks = [
     {
       name: 'GitHub',
-      href: '#', // Replace with your GitHub URL
+      href: 'https://github.com/emma-ctrl-22',
       icon: <FiGithub className="w-5 h-5" />,
     },
     {
       name: 'LinkedIn',
-      href: '#', // Replace with your LinkedIn URL
+      href: 'https://linkedin.com/in/emmanuel-nyatepe-b27a82207',
       icon: <FiLinkedin className="w-5 h-5" />,
     },
     {
-      name: 'Twitter',
-      href: '#', // Replace with your Twitter/X URL
-      icon: <FiTwitter className="w-5 h-5" />,
+      name: 'WhatsApp',
+      href: 'https://wa.me/233559925298',
+      icon: <FaWhatsapp className="w-5 h-5" />,
     },
   ];
 

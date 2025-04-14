@@ -41,12 +41,12 @@ const InfoGrid = () => {
 
   // Updated social handles with new entries
   const socialHandles = {
-    github: 'github.com/yourusername',
-    email: 'contact@yourdomain.com',
-    linkedin: 'linkedin.com/in/yourprofile',
-    whatsapp: '+1234567890',
-    phone: '+1234567890',
-    snapchat: 'your.snapchat'
+    github: 'github.com/emma-ctrl-22',
+    email: 'emmanuelnyatepe35@gmail.com',
+    linkedin: 'linkedin.com/in/emmanuel-nyatepe-b27a82207',
+    whatsapp: '+233559925298',
+    phone: '+233559925298',
+    snapchat: 'steals_codes'
   };
 
   // Set the handle directly when an icon is clicked

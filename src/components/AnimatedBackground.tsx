@@ -7,10 +7,16 @@ const AnimatedBackground = () => {
   
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+        console.error("Canvas element not found");
+        return;
+    }
     
     const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!ctx) {
+        console.error("Could not get 2D context");
+        return;
+    }
     
     // Set canvas dimensions to window size
     const setCanvasSize = () => {
@@ -101,11 +107,16 @@ const AnimatedBackground = () => {
     
     // Animation function
     function animate() {
-      requestAnimationFrame(animate);
+      const currentCanvas = canvasRef.current;
+      const currentCtx = currentCanvas?.getContext('2d');
       
-      // Clear the canvas
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      if (!currentCanvas || !currentCtx) {
+          requestAnimationFrame(animate);
+          return;
+      }
+
+      currentCtx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      currentCtx.fillRect(0, 0, currentCanvas.width, currentCanvas.height);
       
       // Draw nebula clouds
       nebulae.forEach(nebula => {
@@ -114,7 +125,7 @@ const AnimatedBackground = () => {
         const pulse = Math.sin(nebula.pulseFactor) * 0.3 + 0.7;
         
         // Create gradient for nebula
-        const gradient = ctx.createRadialGradient(
+        const gradient = currentCtx.createRadialGradient(
           nebula.x, nebula.y, 0,
           nebula.x, nebula.y, nebula.radius * pulse
         );
@@ -127,10 +138,10 @@ const AnimatedBackground = () => {
         gradient.addColorStop(0.3, `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${nebula.opacity})`);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(nebula.x, nebula.y, nebula.radius * pulse, 0, Math.PI * 2);
-        ctx.fill();
+        currentCtx.fillStyle = gradient;
+        currentCtx.beginPath();
+        currentCtx.arc(nebula.x, nebula.y, nebula.radius * pulse, 0, Math.PI * 2);
+        currentCtx.fill();
         
         // Move nebula
         nebula.x += Math.cos(nebula.direction) * nebula.speed;
@@ -138,10 +149,10 @@ const AnimatedBackground = () => {
         
         // Wrap around if nebula goes off screen (with buffer)
         const buffer = nebula.radius;
-        if (nebula.x < -buffer) nebula.x = canvas.width + buffer;
-        if (nebula.x > canvas.width + buffer) nebula.x = -buffer;
-        if (nebula.y < -buffer) nebula.y = canvas.height + buffer;
-        if (nebula.y > canvas.height + buffer) nebula.y = -buffer;
+        if (nebula.x < -buffer) nebula.x = currentCanvas.width + buffer;
+        if (nebula.x > currentCanvas.width + buffer) nebula.x = -buffer;
+        if (nebula.y < -buffer) nebula.y = currentCanvas.height + buffer;
+        if (nebula.y > currentCanvas.height + buffer) nebula.y = -buffer;
       });
       
       // Draw and update stars
@@ -165,17 +176,17 @@ const AnimatedBackground = () => {
         }
         
         // Draw the star with pulsing effect
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size * (0.7 + 0.3 * pulse), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${star.opacity * pulse})`;
-        ctx.fill();
+        currentCtx.beginPath();
+        currentCtx.arc(star.x, star.y, star.size * (0.7 + 0.3 * pulse), 0, Math.PI * 2);
+        currentCtx.fillStyle = `rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, ${star.opacity * pulse})`;
+        currentCtx.fill();
         
         // Add a bright center for bigger stars
         if (star.size > 1.5) {
-          ctx.beginPath();
-          ctx.arc(star.x, star.y, star.size * 0.4, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-          ctx.fill();
+          currentCtx.beginPath();
+          currentCtx.arc(star.x, star.y, star.size * 0.4, 0, Math.PI * 2);
+          currentCtx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+          currentCtx.fill();
         }
         
         // Move star
@@ -183,9 +194,9 @@ const AnimatedBackground = () => {
         star.pulseFactor += star.twinkleSpeed; // Independent twinkle speed
         
         // Reset star if it goes off screen
-        if (star.y > canvas.height) {
+        if (star.y > currentCanvas.height) {
           star.y = 0;
-          star.x = Math.random() * canvas.width;
+          star.x = Math.random() * currentCanvas.width;
         }
       });
       
@@ -200,7 +211,7 @@ const AnimatedBackground = () => {
         const rgbColor = hexToRgb(shootingStarColor);
         
         shootingStars.push({
-          x: Math.random() * canvas.width,
+          x: Math.random() * currentCanvas.width,
           y: 0,
           length: Math.random() * 150 + 100,
           speed: Math.random() * 15 + 12,
@@ -237,7 +248,7 @@ const AnimatedBackground = () => {
         );
         
         // Draw main trail
-        const gradient = ctx.createLinearGradient(
+        const gradient = currentCtx.createLinearGradient(
           shootingStar.x, shootingStar.y,
           endX, endY
         );
@@ -246,12 +257,12 @@ const AnimatedBackground = () => {
         gradient.addColorStop(0.3, `rgba(${shootingStar.rgbColor.r}, ${shootingStar.rgbColor.g}, ${shootingStar.rgbColor.b}, ${shootingStar.opacity * 0.6})`);
         gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
         
-        ctx.beginPath();
-        ctx.moveTo(shootingStar.x, shootingStar.y);
-        ctx.lineTo(endX, endY);
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = shootingStar.width;
-        ctx.stroke();
+        currentCtx.beginPath();
+        currentCtx.moveTo(shootingStar.x, shootingStar.y);
+        currentCtx.lineTo(endX, endY);
+        currentCtx.strokeStyle = gradient;
+        currentCtx.lineWidth = shootingStar.width;
+        currentCtx.stroke();
         
         // Draw sparkling effect along the trail
         for (let j = 0; j < shootingStar.trail.length; j += 3) { // Only draw some points for performance
@@ -259,16 +270,16 @@ const AnimatedBackground = () => {
           const sparkSize = Math.random() * 2 + 1;
           const sparkOpacity = point.opacity * (Math.random() * 0.5 + 0.5);
           
-          ctx.beginPath();
-          ctx.arc(
+          currentCtx.beginPath();
+          currentCtx.arc(
             point.x + (Math.random() * 10 - 5), 
             point.y + (Math.random() * 10 - 5), 
             sparkSize, 
             0, 
             Math.PI * 2
           );
-          ctx.fillStyle = `rgba(255, 255, 255, ${sparkOpacity})`;
-          ctx.fill();
+          currentCtx.fillStyle = `rgba(255, 255, 255, ${sparkOpacity})`;
+          currentCtx.fill();
         }
         
         // Update shooting star position
@@ -281,13 +292,15 @@ const AnimatedBackground = () => {
         // Remove if it's off screen or faded out
         if (
           shootingStar.x < 0 ||
-          shootingStar.x > canvas.width ||
-          shootingStar.y > canvas.height ||
+          shootingStar.x > currentCanvas.width ||
+          shootingStar.y > currentCanvas.height ||
           shootingStar.opacity <= 0
         ) {
           shootingStars.splice(i, 1);
         }
       }
+
+      requestAnimationFrame(animate);
     }
     
     // Helper function to convert hex to rgb

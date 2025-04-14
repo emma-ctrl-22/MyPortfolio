@@ -85,7 +85,7 @@ export default function Home() {
       {/* Main content needs to be relative to sit above the background */}
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="min-h-screen flex flex-col items-center justify-center text-center gap-8 px-4 relative">
+        <section id='home' className="min-h-screen flex flex-col items-center justify-center text-center gap-8 px-4 relative">
           {/* Text Content Wrapper with relative positioning and z-index */}
           <div className="relative z-10 mb-8">
             <AnimatedTextCharacter
@@ -207,7 +207,7 @@ export default function Home() {
         </section>
 
         {/* Tech Stack Section - Increased padding and heading glow */}
-        <section className="py-20 md:py-32 px-4 text-center"> {/* Increased py */}
+        <section id='techstack' className="py-20 md:py-32 px-4 text-center"> {/* Increased py */}
           <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">
             I constantly try to improve
           </p>
@@ -220,7 +220,7 @@ export default function Home() {
         </section>
 
         {/* Work Experience Section */}
-        <section className="  px-4 text-center">
+        <section id='experience' className="  px-4 text-center">
           <p className="text-sm text-gray-400 uppercase tracking-widest mb-2">
             My Professional Journey
           </p>
@@ -277,16 +277,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='w-full h-full flex items-center justify-center px-14'>
+        <section id='about' className='w-full h-full flex items-center justify-center px-14'>
           <AboutMe />
         </section>
 
-        <section className='w-full h-full flex items-center justify-center'>
+        <section id='projects' className='w-full h-full flex items-center justify-center'>
           {/* <ProjectShowcase /> */}
         </section>
 
         {/* Call To Action Section (formerly SpinningTextSection) */}
-        <CallToActionSection onGetInTouchClick={handleOpenPopup} />
+        <section id='contact' className='w-full h-full'>
+          <CallToActionSection onGetInTouchClick={handleOpenPopup} />
+        </section>
+        {/* <CallToActionSection onGetInTouchClick={handleOpenPopup} /> */}
 
         <Footer />
       </div>

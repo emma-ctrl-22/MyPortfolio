@@ -4,7 +4,7 @@ import { forwardRef, useRef } from "react";
 import { AnimatedBeam } from "./magicui/animated-beam";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-// import Image from "next/image"; // Keep commented out until real images are ready
+import Image from "next/image"; // Import Image component
 
 // Re-define Circle component locally for Experience, slightly larger
 const Circle = forwardRef<
@@ -51,6 +51,7 @@ const Experience = () => {
       ref: hospitalRef,
       title: "Junior Network Engineer (Intern)",
       company: "37 Military Hospital",
+      imageUrl: "/images/37-H.png", // Added image URL
       duration: "Internship",
       color: "border-cyan-500",
       placeholderBg: "bg-cyan-900/50",
@@ -63,6 +64,7 @@ const Experience = () => {
       ref: wigalRef,
       title: "Frontend Developer (Intern)",
       company: "Wigal",
+      imageUrl: "/images/wigal.png", // Added image URL
       duration: "Internship",
       color: "border-emerald-500",
       placeholderBg: "bg-emerald-900/50",
@@ -75,6 +77,7 @@ const Experience = () => {
       ref: kamakRef,
       title: "Software Engineer",
       company: "Kamak Paperless",
+      imageUrl: "/images/kamak.png", // Added image URL
       duration: "Full-time",
       color: "border-indigo-500",
       placeholderBg: "bg-indigo-900/50",
@@ -87,6 +90,7 @@ const Experience = () => {
       ref: tech231Ref,
       title: "Software Engineer",
       company: "Tech231 Liberia",
+      imageUrl: "/images/tech231.png", // Added image URL
       duration: "Current",
       color: "border-amber-500",
       placeholderBg: "bg-amber-900/50",
@@ -135,8 +139,21 @@ const Experience = () => {
             )}
           >
             {/* Pass a dummy ref or no ref to Circle now */}
-            <Circle className={`${node.color} bg-gray-900/30`} title={node.title}>
-              {node.content ? node.content : <div className={cn("w-10 h-10 rounded-full", node.placeholderBg)}></div>}
+            <Circle className={`${node.color} bg-white`} title={node.title}>
+              {/* Conditionally render Image or placeholder/icon */}
+              {node.imageUrl ? (
+                <Image
+                  src={node.imageUrl}
+                  alt={node.company ? `${node.company} Logo` : 'Company Logo'}
+                  width={48} // Slightly smaller than circle (size-16 is 64px)
+                  height={48}
+                  className="object-contain rounded-full bg-white p-1" // White background, contain fit, padding
+                />
+              ) : node.content ? (
+                node.content // Render start/end icon
+              ) : (
+                <div className={cn("w-10 h-10 rounded-full", node.placeholderBg)}></div> // Fallback placeholder
+              )}
             </Circle>
             {node.company && (
               <div className="w-full md:max-w-xs"> 

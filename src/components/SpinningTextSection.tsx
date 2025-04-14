@@ -1,9 +1,6 @@
 "use client";
-
-import { motion } from "framer-motion";
 import { SpinningText } from "./magicui/spinning-text"; // Keep this
 import { FiArrowRight } from "react-icons/fi";
-import { FaRegPaperPlane } from "react-icons/fa"; // Placeholder icon for logo
 
 // Rename the component
 interface CallToActionSectionProps {
