@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { AuroraText } from './magicui/aurora-text';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,7 +36,7 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center px-4 sm:px-8 h-16">
         <Link href="/" className="text-2xl font-bold text-gray-100 hover:text-blue-400 transition-colors duration-300">
-          E.N.
+          <AuroraText>E.N</AuroraText>
         </Link>
         <div className="hidden sm:flex items-center gap-6">
           {navItems.map((item) => (

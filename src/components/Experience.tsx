@@ -5,7 +5,7 @@ import { AnimatedBeam } from "./magicui/animated-beam";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image"; // Import Image component
-
+import { GiFinishLine } from "react-icons/gi";
 // Re-define Circle component locally for Experience, slightly larger
 const Circle = forwardRef<
   HTMLDivElement,
@@ -43,8 +43,8 @@ const Experience = () => {
       ref: startRef, 
       title: "Start", 
       color: "border-blue-500", 
-      content: <span className="text-blue-500 font-bold text-xl">→</span>, 
-      verticalOffset: "md:translate-y-0" 
+      content: <span className="text-blue-500 font-bold text-xl"><GiFinishLine /></span>, 
+      verticalOffset: "md:translate-y-[50px] md:translate-x-[-30px]" 
     },
     {
       id: "hospital",
@@ -104,7 +104,7 @@ const Experience = () => {
       title: "End", 
       color: "border-gray-500", 
       content: <span className="text-gray-500 font-bold text-xl">✓</span>, 
-      verticalOffset: "md:translate-y-24" // Sketch: Lower balance point
+      verticalOffset: "md:translate-y-48" // Sketch: Lower balance point
     },
   ];
 

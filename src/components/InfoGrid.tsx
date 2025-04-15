@@ -110,6 +110,10 @@ const InfoGrid = () => {
     (slug) => `https://cdn.simpleicons.org/${slug}/8B5CF6/${slug}` // Using violet-500 as base color
   );
 
+  const baseShadow = "shadow-[0_0_15px_rgba(255,255,255,0.1),inset_0_0_10px_rgba(255,255,255,0.08)]";
+  const hoverShadow = "hover:shadow-[0_0_25px_rgba(255,255,255,0.2),inset_0_0_15px_rgba(255,255,255,0.15)]";
+  const transitionClasses = "transition-shadow duration-300 ease-out";
+
   return (
     <motion.section
       className="p-4 sm:p-6 flex flex-col lg:flex-row self-center gap-4 lg:gap-6 w-full lg:w-[90vw] min-h-screen lg:h-[90vh]"
@@ -133,7 +137,7 @@ const InfoGrid = () => {
       </AnimatePresence>
       <div className='w-full lg:w-2/3 h-full flex flex-col gap-4 lg:gap-6'>
         {/* Top Row: Contact Info - Stacks vertically on mobile, row on medium+ screens */}
-        <div className='bg-transparent backdrop-blur-lg border border-white/10 flex flex-col md:flex-row w-full h-auto md:h-1/2 rounded-lg p-4'>
+        <div className={`bg-transparent backdrop-blur-lg border border-white/10 flex flex-col md:flex-row w-full h-auto md:h-1/2 rounded-lg p-4 ${baseShadow} ${hoverShadow} ${transitionClasses}`}>
           {/* Left Orbit Section - Takes full width on mobile */}
           <div className='relative h-64 md:h-full w-full md:w-1/2 overflow-hidden flex items-center justify-center'>
             {/* ... OrbitingCircles ... */}            <OrbitingCircles
@@ -203,7 +207,7 @@ const InfoGrid = () => {
           </div>
         </div>
         <div className='w-full h-auto lg:h-1/2 flex flex-col lg:flex-row gap-4 lg:gap-6'>
-          <div className='bg-transparent backdrop-blur-lg border border-white/10 relative flex h-full w-full md:w-1/2 rounded-lg items-center justify-center overflow-hidden'>
+          <div className={`bg-transparent backdrop-blur-lg border border-white/10 relative flex h-full w-full md:w-1/2 rounded-lg items-center justify-center overflow-hidden ${baseShadow} ${hoverShadow} ${transitionClasses}`}>
             <IconCloud
               images={images}
             />
@@ -212,7 +216,7 @@ const InfoGrid = () => {
               <FaRobot className="w-6 h-6 md:w-8 md:h-8 animate-bounce" />
             </div>
           </div>
-          <div className=' relative h-full py-8 md:p-0 w-full md:w-1/2 rounded-lg backdrop-blur-lg border border-white/10'>
+          <div className={`bg-transparent relative h-full py-8 md:p-0 w-full md:w-1/2 rounded-lg backdrop-blur-lg border border-white/10 ${baseShadow} ${hoverShadow} ${transitionClasses}`}>
             <EducationalTimeline />
             <div className="absolute bottom-4 left-4 flex items-center gap-2">
               <h2 className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold text-xl">Educational Background</h2>
@@ -222,7 +226,7 @@ const InfoGrid = () => {
         </div>
       </div>
       <div
-        className='w-full lg:w-1/3 h-[50vh] lg:h-full rounded-2xl backdrop-blur-lg border border-white/10 overflow-hidden relative mt-4 lg:mt-0 flex flex-col'
+        className={`w-full lg:w-1/3 h-[50vh] lg:h-full rounded-2xl bg-transparent backdrop-blur-lg border border-white/10 overflow-hidden relative mt-4 lg:mt-0 flex flex-col ${baseShadow} ${hoverShadow} ${transitionClasses}`}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       >
