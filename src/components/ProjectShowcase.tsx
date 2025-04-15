@@ -5,7 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ProjectCard from './ProjectCard';
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
+// Define projects with correct status types
+const projects: Project[] = [
     {
         title: 'Zenith Minds',
         description: 'Educational platform connecting students and instructors globally',
@@ -31,6 +32,17 @@ const projects = [
         status: 'development'
     }
 ];
+
+// Define the Project interface (can be moved to a types file later)
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  url?: string;
+  githubUrl?: string;
+  status: 'coming-soon' | 'live' | 'development';
+}
+
 const ProjectsShowcase = () => {
     const containerRef = useRef<HTMLDivElement>(null);
   
@@ -89,7 +101,7 @@ const ProjectsShowcase = () => {
         className="relative w-full"
         style={{ height: `${projects.length * 100}vh` }}
       >
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <div
             key={project.title}
             className="project-section sticky top-0 h-screen w-full flex items-center justify-center opacity-20 scale-80"

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaLinkedinIn, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { ScratchToReveal } from "./magicui/scratch-to-reveal";
-import { cn } from "@/lib/utils";
 
 const AboutMe = () => {
   const sectionVariants = {

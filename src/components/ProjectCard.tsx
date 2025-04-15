@@ -1,6 +1,18 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
-const ProjectCard = ({ project }: { project: any }) => {
+
+// Define an interface for the project prop
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  url?: string; // Optional URL
+  githubUrl?: string; // Optional GitHub URL
+  status: 'coming-soon' | 'live' | 'development';
+  // Add other fields if necessary
+}
+
+const ProjectCard = ({ project }: { project: Project }) => {
 
     return (
         <motion.div
@@ -62,11 +74,14 @@ const ProjectCard = ({ project }: { project: any }) => {
                     {/* Tech Stack */}
                     <div className="flex flex-wrap gap-3">
                         {project.tech.map((slug: string) => (
-                            <img
+                            <Image
                                 key={slug}
                                 src={`https://cdn.simpleicons.org/${slug}/8B5CF6`}
-                                alt={slug}
-                                className="h-8 w-8 hover:scale-110 transition-transform"
+                                alt={`${slug} logo`}
+                                width={32}
+                                height={32}
+                                className="hover:scale-110 transition-transform"
+                                unoptimized={true}
                             />
                         ))}
                     </div>

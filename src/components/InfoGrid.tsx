@@ -1,29 +1,22 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMapPin, FiMail, FiArrowRight } from 'react-icons/fi';
 import { Globe } from "@/components/magicui/globe";
 import type { COBEOptions } from 'cobe';
 import { slugs } from '@/utils/stack-icons';
 import { IconCloud } from './magicui/icon-cloud';
-import { FaGithub, FaLinkedinIn, FaRobot, FaTwitter, FaRegCopy } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaRobot, FaRegCopy } from "react-icons/fa";
 import { OrbitingCircles } from './magicui/orbiting-circles';
 import { FaWhatsapp, FaPhoneAlt, FaSnapchat } from 'react-icons/fa';
 import EducationalTimeline from './EducationalTimeline';
 import { FcGraduationCap } from "react-icons/fc";
+
 const InfoGrid = () => {
-  const [isRotating, setIsRotating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const phi = useRef(0);
-  const theta = useRef(0.3);
-  const isPointerDown = useRef(false);
-  const pointerInitialPosition = useRef({ x: 0, y: 0 });
-  const initialPhi = useRef(0);
-  const initialTheta = useRef(0);
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
-  const [activeColor, setActiveColor] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleCopy = async () => {
@@ -31,7 +24,7 @@ const InfoGrid = () => {
       try {
         await navigator.clipboard.writeText(selectedHandle);
         setToastMessage('Copied to clipboard!');
-      } catch (err) {
+      } catch {
         setToastMessage('Failed to copy');
       } finally {
         setTimeout(() => setToastMessage(null), 2000);
@@ -52,32 +45,26 @@ const InfoGrid = () => {
   // Set the handle directly when an icon is clicked
   const setGithubHandle = () => {
     setSelectedHandle(socialHandles.github);
-    setActiveColor('purple-400');
   };
 
   const setLinkedinHandle = () => {
     setSelectedHandle(socialHandles.linkedin);
-    setActiveColor('blue-400');
   };
 
   const setWhatsappHandle = () => {
     setSelectedHandle(socialHandles.whatsapp);
-    setActiveColor('green-400');
   };
 
   const setEmailHandle = () => {
     setSelectedHandle(socialHandles.email);
-    setActiveColor('red-400');
   };
 
   const setPhoneHandle = () => {
     setSelectedHandle(socialHandles.phone);
-    setActiveColor('cyan-400');
   };
 
   const setSnapchatHandle = () => {
     setSelectedHandle(socialHandles.snapchat);
-    setActiveColor('yellow-400');
   };
 
   // Gradient animation for output box
@@ -98,12 +85,11 @@ const InfoGrid = () => {
   const globeConfig: COBEOptions = {
     width: 600,
     height: 600,
-    onRender: (state) => {
-      // Only update when user is interacting
-      if (!isPointerDown.current) {
-        state.phi = phi.current;
-        state.theta = theta.current;
-      }
+    onRender: (_state) => {
+      // Simplified onRender if direct manipulation isn't needed
+      // state.phi = phi.current;
+      // state.theta = theta.current;
+      console.log(_state);
     },
     devicePixelRatio: 2,
     phi: 0,
@@ -118,48 +104,6 @@ const InfoGrid = () => {
     markers: [
       { location: [5.6037, -0.1870] as [number, number], size: 0.07 },
     ],
-  };
-
-  const handlePointerDown = (e: React.PointerEvent) => {
-    isPointerDown.current = true;
-    pointerInitialPosition.current = { x: e.clientX, y: e.clientY };
-    initialPhi.current = phi.current;
-    initialTheta.current = theta.current;
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
-  };
-
-  const handlePointerUp = (e: React.PointerEvent) => {
-    isPointerDown.current = false;
-    (e.target as HTMLElement).releasePointerCapture(e.pointerId);
-  };
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isPointerDown.current) return;
-
-    const deltaX = e.clientX - pointerInitialPosition.current.x;
-    const deltaY = e.clientY - pointerInitialPosition.current.y;
-
-    phi.current = initialPhi.current + deltaX * 0.005;
-    theta.current = initialTheta.current + deltaY * 0.005;
-
-    // Limit theta to avoid flipping
-    theta.current = Math.max(Math.min(theta.current, Math.PI - 0.1), 0.1);
-  };
-  // Base styling for the glassy cards
-  const cardBaseStyle = "bg-gray-800/30 backdrop-blur-lg border border-gray-700/50 rounded-2xl p-6 overflow-hidden relative shadow-lg";
-
-  // Animation variants for cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    })
   };
 
   const images = slugs.map(
@@ -236,7 +180,7 @@ const InfoGrid = () => {
           {/* Right Content Section */}
           <div className='w-full md:w-1/2 flex flex-col justify-center items-start p-4 md:p-8 space-y-4 md:space-y-6'>
             <h2 className='text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-center md:text-left w-full'>
-              Let's work together
+              Let`&apos;`s work together
             </h2>
             <p className='text-sm text-gray-300 text-center md:text-left w-full'>
               Click an icon to reveal contact info

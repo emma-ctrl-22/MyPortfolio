@@ -3,10 +3,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { FiArrowRight, FiCopy, FiCheck } from 'react-icons/fi';
-import { Navbar, Experience, AnimatedBackground, TechStack, AnimatedTextCharacter, Footer, InfoGrid, ProjectShowcase, AboutMe, ContactPopup, CallToActionSection } from '@/components';
+import { Navbar, Experience, TechStack, AnimatedTextCharacter, Footer, InfoGrid, AboutMe, ContactPopup, CallToActionSection } from '@/components';
 import { Terminal, TypingAnimation } from "@/components/magicui/terminal";
-import { Marquee } from "@/components/magicui/marquee"; // Import Marquee
-import { Meteors } from '@/components/magicui/meteors';
+import { Marquee } from "@/components/magicui/marquee";
 // Example lines for the terminal animations
 const terminalLines1 = [
   "git clone https://github.com/user/project.git",
@@ -53,15 +52,6 @@ export default function Home() {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State for popup
   const email = "emmanuelnyatepe35@gmail.com";
 
-  const sectionVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.6, ease: "circOut" }
-    }
-  };
-
   // Function to handle copying email
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email).then(() => {
@@ -79,7 +69,6 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-black text-gray-100 font-sans overflow-x-hidden">
-      <AnimatedBackground />
       <Navbar />
 
       {/* Main content needs to be relative to sit above the background */}
@@ -116,7 +105,7 @@ export default function Home() {
                 className="group relative inline-flex items-center justify-center px-6 py-3 bg-gray-800 border border-gray-700 rounded-full text-base font-medium text-gray-200 hover:bg-gray-700 transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Let's Connect
+                  Let`&apos;`s Connect
                   <span className="bg-gray-200 text-gray-900 rounded-full p-1 group-hover:translate-x-1 transition-transform duration-300">
                     <FiArrowRight className="w-4 h-4" />
                   </span>

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
-import { FiX, FiMail, FiCalendar } from "react-icons/fi"; // Icons for buttons
+import { FiX, FiMail /*, FiCalendar*/ } from "react-icons/fi"; // Icons for buttons
 
 interface ContactPopupProps {
   isOpen: boolean;
@@ -64,7 +64,18 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ isOpen, onClose }) => {
                     <FiMail size={16} />
                     {userEmail}
                   </a>
-              
+                  {/* Comment out Book a Call button */}
+                  {/* 
+                  <a 
+                    href="#" // Replace with your Calendly or booking link
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-700/70 hover:bg-gray-600/80 border border-gray-600 rounded-lg text-sm text-gray-200 transition-colors"
+                  >
+                     <FiCalendar size={16} />
+                    Book a Call
+                  </a> 
+                  */}
                 </div>
               </div>
 
