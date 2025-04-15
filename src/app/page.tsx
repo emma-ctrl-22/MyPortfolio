@@ -105,7 +105,7 @@ export default function Home() {
                 className="group relative inline-flex items-center justify-center px-6 py-3 bg-gray-800 border border-gray-700 rounded-full text-base font-medium text-gray-200 hover:bg-gray-700 transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Let`&apos;`s Connect
+                  Let&apos;s Connect
                   <span className="bg-gray-200 text-gray-900 rounded-full p-1 group-hover:translate-x-1 transition-transform duration-300">
                     <FiArrowRight className="w-4 h-4" />
                   </span>

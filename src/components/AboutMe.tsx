@@ -55,8 +55,8 @@ const AboutMe = () => {
           className="text-gray-300 leading-relaxed"
           variants={itemVariants}
         >
-          I&apos;m Emmanuel Nyatepe (or Bhobu, as some know me!), a proactive full-stack software engineer based in Accra, Ghana. 
-          As an alumnus of Valley View University (VVU) and Bishop Herman College (BHOBUSCO), I have a passion for 
+          I&apos;m Emmanuel Nyatepe, a proactive full-stack software engineer based in Accra, Ghana. 
+          As an alumnus of Valley View University (VVU) and Bishop Herman College (BHOBU), I have a passion for 
           creating dynamic web experiences. From frontend to backend, I thrive on 
           solving complex problems with clean, efficient code using technologies like React, Next.js, and Node.js.
         </motion.p>

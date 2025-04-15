@@ -180,7 +180,7 @@ const InfoGrid = () => {
           {/* Right Content Section */}
           <div className='w-full md:w-1/2 flex flex-col justify-center items-start p-4 md:p-8 space-y-4 md:space-y-6'>
             <h2 className='text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent text-center md:text-left w-full'>
-              Let`&apos;`s work together
+              Let&apos;s work together
             </h2>
             <p className='text-sm text-gray-300 text-center md:text-left w-full'>
               Click an icon to reveal contact info
@@ -227,7 +227,7 @@ const InfoGrid = () => {
         onMouseLeave={() => setIsHovering(false)}
       >
         <h3 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-1 mt-4 px-6 pt-2 text-center flex-shrink-0">
-         I Am Flexible Time Zones
+         I am flexible with time zones
         </h3>
         <div className="relative flex items-center justify-center w-full h-full">
           <Globe config={globeConfig} />
