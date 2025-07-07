@@ -18,6 +18,12 @@ const formatSlug = (slug: string): string => {
     if (name === 'Css3') name = 'CSS3';
     if (name === 'Tailwindcss') name = 'Tailwind CSS';
     if (name === 'Reactquery') name = 'React Query';
+    if (name === 'Expo') name = 'Expo';
+    if (name === 'Streamlit') name = 'Streamlit';
+    if (name === 'Firebase') name = 'Firebase';
+    if (name === 'Googlemaps') name = 'Google Maps';
+    if (name === 'Reactrouter') name = 'React Router';
+    if (name === 'Vite') name = 'Vite';
     return name;
   };
   

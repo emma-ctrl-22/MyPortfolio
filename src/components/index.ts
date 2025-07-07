@@ -10,3 +10,4 @@ export { default as TechStack } from './TechStack';
 export { default as AboutMe } from './AboutMe';
 export { default as CallToActionSection } from './SpinningTextSection';
 export { default as ContactPopup } from './ContactPopup';
+export { default as ProjectCard } from './ProjectCard';

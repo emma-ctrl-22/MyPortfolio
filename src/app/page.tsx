@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { FiArrowRight, FiCopy, FiCheck } from 'react-icons/fi';
-import { Navbar, Experience, TechStack, AnimatedTextCharacter, Footer, InfoGrid, AboutMe, ContactPopup, CallToActionSection } from '@/components';
+import { Navbar, Experience, TechStack, AnimatedTextCharacter, Footer, InfoGrid, AboutMe, ContactPopup, CallToActionSection, ProjectShowcase } from '@/components';
 import { Terminal, TypingAnimation } from "@/components/magicui/terminal";
 import { Marquee } from "@/components/magicui/marquee";
 // Example lines for the terminal animations
@@ -270,8 +270,8 @@ export default function Home() {
           <AboutMe />
         </section>
 
-        <section id='projects' className='w-full h-full flex items-center justify-center'>
-          {/* <ProjectShowcase /> */}
+        <section id='projects' className='w-full h-full flex items-center justify-center bg-black'>
+          <ProjectShowcase />
         </section>
 
         {/* Call To Action Section (formerly SpinningTextSection) */}
