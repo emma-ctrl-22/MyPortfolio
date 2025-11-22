@@ -36,7 +36,8 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ isOpen, onClose }) => {
         toast.error("Failed to send message.");
       }
     } catch (err) {
-      toast.error("Failed to send message.");
+      console.error(err);
+      toast.error("Failed to send message.",);
     } finally {
       setLoading(false);
     }
