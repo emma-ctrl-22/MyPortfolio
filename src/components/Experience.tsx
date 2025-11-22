@@ -34,6 +34,7 @@ const Experience = () => {
   const wigalRef = useRef<HTMLDivElement>(null);
   const kamakRef = useRef<HTMLDivElement>(null);
   const tech231Ref = useRef<HTMLDivElement>(null);
+  const steamanRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
   // Define nodes with specific vertical offsets for parent divs
@@ -51,52 +52,65 @@ const Experience = () => {
       ref: hospitalRef,
       title: "Junior Network Engineer (Intern)",
       company: "37 Military Hospital",
-      imageUrl: "/images/37-H.png", // Added image URL
+      imageUrl: "/images/37-H.png",
       duration: "Internship",
       color: "border-cyan-500",
       placeholderBg: "bg-cyan-900/50",
       textColor: "text-cyan-400",
       companyColor: "text-cyan-500",
-      verticalOffset: "md:-translate-y-8" // Sketch: Slightly up
+      verticalOffset: "md:-translate-y-8"
     },
     {
       id: "wigal",
       ref: wigalRef,
       title: "Frontend Developer (Intern)",
       company: "Wigal",
-      imageUrl: "/images/wigal.png", // Added image URL
+      imageUrl: "/images/wigal.png",
       duration: "Internship",
       color: "border-emerald-500",
       placeholderBg: "bg-emerald-900/50",
       textColor: "text-emerald-400",
       companyColor: "text-emerald-500",
-      verticalOffset: "md:-translate-y-12" // Sketch: Bit higher
+      verticalOffset: "md:-translate-y-12"
     },
     {
       id: "kamak",
       ref: kamakRef,
       title: "Software Engineer",
       company: "Kamak Paperless",
-      imageUrl: "/images/kamak.png", // Added image URL
+      imageUrl: "/images/kamak.png",
       duration: "Full-time",
       color: "border-indigo-500",
       placeholderBg: "bg-indigo-900/50",
       textColor: "text-indigo-400",
       companyColor: "text-indigo-500",
-      verticalOffset: "md:-translate-y-48" // Sketch: Much higher
+      verticalOffset: "md:-translate-y-48"
     },
     {
       id: "tech231",
       ref: tech231Ref,
       title: "Software Engineer",
       company: "Tech231 Liberia",
-      imageUrl: "/images/tech231.png", // Added image URL
+      imageUrl: "/images/tech231.png",
       duration: "Current",
       color: "border-amber-500",
       placeholderBg: "bg-amber-900/50",
       textColor: "text-amber-400",
       companyColor: "text-amber-500",
-      verticalOffset: "md:-translate-y-40" // Sketch: High, slightly below Kamak
+      verticalOffset: "md:-translate-y-40"
+    },
+    {
+      id: "steaman",
+      ref: steamanRef,
+      title: "FullStack Developer",
+      company: "Steaman Group Limited",
+      imageUrl: "/images/steaman_logo.jpeg",
+      duration: "Current",
+      color: "border-green-600",
+      placeholderBg: "bg-green-900/50",
+      textColor: "text-green-400",
+      companyColor: "text-green-600",
+      verticalOffset: "md:-translate-y-32"
     },
     { 
       id: "end", 
@@ -104,18 +118,19 @@ const Experience = () => {
       title: "End", 
       color: "border-gray-500", 
       content: <span className="text-gray-500 font-bold text-xl">✓</span>, 
-      verticalOffset: "md:translate-y-48" // Sketch: Lower balance point
+      verticalOffset: "md:translate-y-48"
     },
   ];
 
   // Define beams connecting the node refs (parent divs)
   // Apply offsets to visually target the Circle center within the parent div
   const beams = [
-    { from: startRef, to: hospitalRef, startOffset: 0, endOffset: -32 },   // Start(center) -> Hospital(top) -> Offset needed at end
-    { from: hospitalRef, to: wigalRef, startOffset: -32, endOffset: -32 }, // Hospital(top) -> Wigal(top) -> Offset needed at both
-    { from: wigalRef, to: kamakRef, startOffset: -32, endOffset: -32 },    // Wigal(top) -> Kamak(top) -> Offset needed at both
-    { from: kamakRef, to: tech231Ref, startOffset: -32, endOffset: -32 }, // Kamak(top) -> Tech231(top) -> Offset needed at both
-    { from: tech231Ref, to: endRef, startOffset: -32, endOffset: 0 },     // Tech231(top) -> End(center) -> Offset needed at start
+    { from: startRef, to: hospitalRef, startOffset: 0, endOffset: -32 },
+    { from: hospitalRef, to: wigalRef, startOffset: -32, endOffset: -32 },
+    { from: wigalRef, to: kamakRef, startOffset: -32, endOffset: -32 },
+    { from: kamakRef, to: tech231Ref, startOffset: -32, endOffset: -32 },
+    { from: tech231Ref, to: steamanRef, startOffset: -32, endOffset: -32 },
+    { from: steamanRef, to: endRef, startOffset: -32, endOffset: 0 },
   ];
 
   return (

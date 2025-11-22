@@ -44,8 +44,8 @@ const projects: Project[] = [
         description: 'A multilingual educational website supporting 5 languages. Features real-time location with Google Maps and an online student application system.',
         tech: ['react', 'firebase', 'googlemaps'],
         imageUrl: '/images/cmc.png', // You can update this path
-        url: undefined, // No public URL provided
-        status: 'coming-soon'
+        url: 'https://www.cmcghanaedu.com/', // No public URL provided
+        status: 'live'
     },
     {
         title: 'GridGuard - Power Monitoring App',
@@ -112,7 +112,7 @@ const ProjectsShowcase = () => {
                     <div
                         ref={sectionRef}
                         className="flex h-full relative"
-                        style={{ width: `${projects.length * 100}vw` }}
+                        style={{ width: `${(projects.length + 1) * 100}vw` }}
                     >
                         {projects.map((project, index) => (
                             <div
