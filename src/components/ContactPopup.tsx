@@ -3,7 +3,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaLinkedinIn, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { FiX, FiMail /*, FiCalendar*/ } from "react-icons/fi"; // Icons for buttons
 import { saveMessageToFirestore } from "@/lib/utils";
 import { toast } from "react-hot-toast";
