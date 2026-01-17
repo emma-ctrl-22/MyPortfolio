@@ -39,7 +39,7 @@ const InfoGrid = () => {
     linkedin: 'linkedin.com/in/emmanuel-nyatepe-b27a82207',
     whatsapp: '+233559925298',
     phone: '+233559925298',
-    snapchat: 'steals_codes'
+    snapchat: 'only_manny'
   };
 
   // Set the handle directly when an icon is clicked
