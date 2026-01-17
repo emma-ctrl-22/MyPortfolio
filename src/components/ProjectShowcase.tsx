@@ -27,7 +27,7 @@ const projects: Project[] = [
         title: 'AirState Land & Property Search',
         description: 'A real estate platform for users to upload land documents and request services like land surveying. Features Firebase Auth with OAuth and SMS notifications.',
         tech: ['react', 'firebase','typescript','tailwindcss','vite','reactrouter'],
-        imageUrl: '/images/airstate.png', // You can update this path
+        imageUrl: '/images/airstate2.png', // You can update this path
         url: 'https://airstatefinder.web.app',
         status: 'live'
     },
@@ -43,7 +43,7 @@ const projects: Project[] = [
         title: 'CMC Ghana Website',
         description: 'A multilingual educational website supporting 5 languages. Features real-time location with Google Maps and an online student application system.',
         tech: ['react', 'firebase', 'googlemaps'],
-        imageUrl: '/images/cmc.png', // You can update this path
+        imageUrl: '/images/cmc2.png', // You can update this path
         url: 'https://www.cmcghanaedu.com/', // No public URL provided
         status: 'live'
     },
@@ -54,6 +54,46 @@ const projects: Project[] = [
         imageUrl: '/images/gridguard.png', // You can update this path
         url: undefined, // No public URL provided
         status: 'development'
+    },
+    {
+        title: 'WorkerDom',
+        description: 'A platform connecting clients with skilled workers for various services. Features real-time booking, payments, and worker profiles.',
+        tech: ['react', 'typescript', 'nodedotjs', 'postgresql', 'tailwindcss'],
+        imageUrl: '/images/workerdom.png', // Update this path
+        url: 'https://workerdom.com/',
+        status: 'live'
+    },
+    {
+        title: 'UbiHealth Rider',
+        description: 'A delivery rider app for UbiHealth, enabling real-time order tracking, route optimization, and seamless delivery management.',
+        tech: ['react', 'expo', 'typescript', 'firebase', 'googlemaps'],
+        imageUrl: '/images/ubihealth-rider.png', // Update this path
+        url: 'https://apps.apple.com/gh/app/ubihealth-rider-by-steaman/id6757375024',
+        status: 'live'
+    },
+    {
+        title: 'UbiHealth Mobile',
+        description: 'A healthcare mobile app for patients to book appointments, order medication, and access telemedicine services.',
+        tech: ['react', 'expo', 'typescript', 'firebase', 'nodedotjs'],
+        imageUrl: '/images/ubihealth.png', // Update this path
+        url: 'https://apps.apple.com/gh/app/ubihealth-by-steaman/id6743393044',
+        status: 'live'
+    },
+    {
+        title: 'Steaman Mall',
+        description: 'An e-commerce platform for Steaman Group, featuring product listings, cart management, and secure payment integration.',
+        tech: ['nextdotjs', 'typescript', 'tailwindcss', 'firebase'],
+        imageUrl: '/images/steaman-mall.png', // Update this path
+        url: 'https://apps.apple.com/gh/app/steaman-mall/id6465788511',
+        status: 'live'
+    },
+    {
+        title: 'Steaman Realty',
+        description: 'A real estate platform for Steaman Group, allowing users to browse, search, and inquire about property listings.',
+        tech: ['nextdotjs', 'typescript', 'tailwindcss', 'firebase', 'googlemaps'],
+        imageUrl: '/images/steaman-realty.png', // Update this path
+        url: 'https://steamanrealty.com/',
+        status: 'live'
     }
 ];
 

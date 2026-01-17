@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { AuroraText } from './magicui/aurora-text';
+import { FiDownload } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,6 +51,16 @@ const Navbar = () => {
               <span className="absolute bottom-[-2px] left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
+          {/* Resume download button */}
+          <a
+            href="/Emmanuel%20Nyatepe%20FullStack.pdf.pdf"
+            download
+            className="ml-2 inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-500 transition-colors"
+            aria-label="Download resume"
+          >
+            <FiDownload />
+            Resume
+          </a>
         </div>
         <div className="sm:hidden flex items-center">
           <button
@@ -94,6 +105,16 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
+          <a
+            href="/Emmanuel%20Nyatepe%20FullStack.pdf.pdf"
+            download
+            className="text-gray-200 hover:text-blue-400 transition-colors duration-300 py-2 text-lg flex items-center gap-2"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-label="Download resume"
+          >
+            <FiDownload />
+            Resume
+          </a>
         </div>
       </motion.div>
     </motion.nav>
