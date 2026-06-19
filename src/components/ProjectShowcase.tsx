@@ -15,14 +15,14 @@ const projects: Project[] = [
         url: undefined, // Enterprise software, no public URL
         status: 'live'
     },
-    {
-        title: 'My Lineage App',
-        description: 'A feature-rich mobile app to manage family trees and connect with relatives via social features. Features a dynamic family tree visualization and real-time chat.',
-        tech: ['react', 'typescript', 'nodedotjs', 'expo', 'postgresql','streamlit','reactquery','firebase'],
-        imageUrl: '/images/lineage.png', // You can update this path
-        url: 'https://play.google.com/store/apps/details?id=com.lineageproject.mobile',
-        status: 'live'
-    },
+    // {
+    //     title: 'My Lineage App',
+    //     description: 'A feature-rich mobile app to manage family trees and connect with relatives via social features. Features a dynamic family tree visualization and real-time chat.',
+    //     tech: ['react', 'typescript', 'nodedotjs', 'expo', 'postgresql','streamlit','reactquery','firebase'],
+    //     imageUrl: '/images/lineage.png', // You can update this path
+    //     url: 'https://play.google.com/store/apps/details?id=com.lineageproject.mobile',
+    //     status: 'live'
+    // },
     {
         title: 'AirState Land & Property Search',
         description: 'A real estate platform for users to upload land documents and request services like land surveying. Features Firebase Auth with OAuth and SMS notifications.',
@@ -31,14 +31,14 @@ const projects: Project[] = [
         url: 'https://airstatefinder.web.app',
         status: 'live'
     },
-    {
-        title: 'Drip in Jerseys',
-        description: 'A performance-optimized e-commerce website using Next.js with a focus on SEO. Integrates Firebase, SMS notifications, and Google Maps for delivery.',
-        tech: ['nextdotjs', 'firebase', 'googlemaps'],
-        imageUrl: '/images/dij.png', // You can update this path
-        url: 'https://dripinjerseys.com',
-        status: 'live'
-    },
+    // {
+    //     title: 'Drip in Jerseys',
+    //     description: 'A performance-optimized e-commerce website using Next.js with a focus on SEO. Integrates Firebase, SMS notifications, and Google Maps for delivery.',
+    //     tech: ['nextdotjs', 'firebase', 'googlemaps'],
+    //     imageUrl: '/images/dij.png', // You can update this path
+    //     url: 'https://dripinjerseys.com',
+    //     status: 'live'
+    // },
     {
         title: 'CMC Ghana Website',
         description: 'A multilingual educational website supporting 5 languages. Features real-time location with Google Maps and an online student application system.',
