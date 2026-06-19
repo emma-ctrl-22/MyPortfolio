@@ -40,38 +40,6 @@ const projects: Project[] = [
     //     status: 'live'
     // },
     {
-        title: 'CMC Ghana Website',
-        description: 'A multilingual educational website supporting 5 languages. Features real-time location with Google Maps and an online student application system.',
-        tech: ['react', 'firebase', 'googlemaps'],
-        imageUrl: '/images/cmc2.png', // You can update this path
-        url: 'https://www.cmcghanaedu.com/', // No public URL provided
-        status: 'live'
-    },
-    {
-        title: 'GridGuard - Power Monitoring App',
-        description: 'A mobile app connected to an IoT device to monitor electricity availability in real-time. Uses an MQTT broker to update status instantly.',
-        tech: ['react', 'expo', 'typescript', 'nodedotjs', 'mqtt','firebase'],
-        imageUrl: '/images/gridguard.png', // You can update this path
-        url: undefined, // No public URL provided
-        status: 'development'
-    },
-    {
-        title: 'WorkerDom',
-        description: 'A platform connecting clients with skilled workers for various services. Features real-time booking, payments, and worker profiles.',
-        tech: ['react', 'typescript', 'nodedotjs', 'postgresql', 'tailwindcss'],
-        imageUrl: '/images/workerdom.png', // Update this path
-        url: 'https://workerdom.com/',
-        status: 'live'
-    },
-    {
-        title: 'UbiHealth Rider',
-        description: 'A delivery rider app for UbiHealth, enabling real-time order tracking, route optimization, and seamless delivery management.',
-        tech: ['react', 'expo', 'typescript', 'firebase', 'googlemaps'],
-        imageUrl: '/images/ubihealth-rider.png', // Update this path
-        url: 'https://apps.apple.com/gh/app/ubihealth-rider-by-steaman/id6757375024',
-        status: 'live'
-    },
-    {
         title: 'UbiHealth Mobile',
         description: 'A healthcare mobile app for patients to book appointments, order medication, and access telemedicine services.',
         tech: ['react', 'expo', 'typescript', 'firebase', 'nodedotjs'],
@@ -85,6 +53,38 @@ const projects: Project[] = [
         tech: ['nextdotjs', 'typescript', 'tailwindcss', 'firebase'],
         imageUrl: '/images/steaman-mall.png', // Update this path
         url: 'https://apps.apple.com/gh/app/steaman-mall/id6465788511',
+        status: 'live'
+    },
+    {
+        title: 'UbiHealth Rider',
+        description: 'A delivery rider app for UbiHealth, enabling real-time order tracking, route optimization, and seamless delivery management.',
+        tech: ['react', 'expo', 'typescript', 'firebase', 'googlemaps'],
+        imageUrl: '/images/ubihealth-rider.png', // Update this path
+        url: 'https://apps.apple.com/gh/app/ubihealth-rider-by-steaman/id6757375024',
+        status: 'live'
+    },
+    {
+        title: 'WorkerDom',
+        description: 'A platform connecting clients with skilled workers for various services. Features real-time booking, payments, and worker profiles.',
+        tech: ['react', 'typescript', 'nodedotjs', 'postgresql', 'tailwindcss'],
+        imageUrl: '/images/workerdom.png', // Update this path
+        url: 'https://workerdom.com/',
+        status: 'live'
+    },
+    {
+        title: 'GridGuard - Power Monitoring App',
+        description: 'A mobile app connected to an IoT device to monitor electricity availability in real-time. Uses an MQTT broker to update status instantly.',
+        tech: ['react', 'expo', 'typescript', 'nodedotjs', 'mqtt','firebase'],
+        imageUrl: '/images/gridguard.png', // You can update this path
+        url: undefined, // No public URL provided
+        status: 'development'
+    },
+    {
+        title: 'CMC Ghana Website',
+        description: 'A multilingual educational website supporting 5 languages. Features real-time location with Google Maps and an online student application system.',
+        tech: ['react', 'firebase', 'googlemaps'],
+        imageUrl: '/images/cmc2.png', // You can update this path
+        url: 'https://www.cmcghanaedu.com/', // No public URL provided
         status: 'live'
     },
     {
