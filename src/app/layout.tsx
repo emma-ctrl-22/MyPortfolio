@@ -1,105 +1,68 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, Newsreader } from "next/font/google";
+import type { ReactNode } from "react";
+
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { site } from "@/config/site";
+
 import "./globals.css";
-import { Toaster } from "react-hot-toast";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// Configure Inter font
-const inter = Inter({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-inter", // Define CSS variable
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  variable: "--font-newsreader",
+  display: "swap",
 });
 
-// Define SEO Metadata
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Emmanuel Nyatepe | Software Engineer | Full-Stack Developer",
-  description: "Portfolio of Emmanuel Nyatepe (Bhobu), a skilled Software Engineer & Full-Stack Developer from Accra, Ghana. Alumnus of Valley View University & Bishop Herman College. Specializing in React, Next.js, Node.js. Available for freelance & full-time roles.",
-  keywords: [
-    "Emmanuel Nyatepe", 
-    "software engineer", 
-    "developer", 
-    "full-stack developer", 
-    "Next.js", 
-    "React", 
-    "Node.js", 
-    "Valley View University", 
-    "VVU",
-    "Bishop Herman College", 
-    "BHOBU",
-    "Bhobu", 
-    "Bhobu tech guy", 
-    "freelance", 
-    "Accra", 
-    "Ghana", 
-    "web development",
-    "portfolio"
-  ],
-  authors: [{ name: "Emmanuel Nyatepe" }],
-  creator: "Emmanuel Nyatepe",
-  // Open Graph (for social sharing)
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name}, ${site.role.toLowerCase()} in Accra`,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   openGraph: {
-    title: "Emmanuel Nyatepe | Software Engineer Portfolio",
-    description: "Explore the portfolio of Emmanuel Nyatepe, showcasing projects and skills in web development.",
-    url: "https://your-domain.com", // Replace with your actual deployed domain
-    siteName: "Emmanuel Nyatepe Portfolio",
-    images: [
-      {
-        url: "/images/profile.jpg", // Path to your profile image in /public
-        width: 800, // Adjust dimensions as needed
-        height: 600,
-        alt: "Emmanuel Nyatepe Profile Picture",
-      },
-    ],
-    locale: "en_US",
     type: "website",
+    siteName: site.name,
+    locale: "en_GB",
   },
-  // Twitter Card
-  twitter: {
-    card: "summary_large_image",
-    title: "Emmanuel Nyatepe | Software Engineer Portfolio",
-    description: "Full-Stack Developer specializing in Next.js, React, Node.js. Available for hire.",
-    // creator: "@yourTwitterHandle", // Optional: Add your Twitter handle
-    images: ["/images/profile.jpg"], // Path to your profile image in /public
-  },
-  // Optional: Robots meta tags (complementary to robots.txt)
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  // Optional: Icons/Favicons (place in /public or /app)
-  // icons: {
-  //   icon: '/favicon.ico',
-  //   shortcut: '/favicon-16x16.png',
-  //   apple: '/apple-touch-icon.png',
-  // },
+  twitter: { card: "summary_large_image" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3efe6" },
+    { media: "(prefers-color-scheme: dark)", color: "#141311" },
+  ],
+};
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable}`}> {/* Apply variable to html tag */}
-      <body className={`font-sans antialiased`}>
-        <Toaster position="top-center" />
-        {children}
+    <html lang="en-GB" className={`${newsreader.variable} ${plexMono.variable}`}>
+      <body className="flex min-h-dvh flex-col">
+        <a
+          href="#main"
+          className="sr-only bg-ink px-4 py-3 label text-paper focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50"
+        >
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main" className="page flex-1">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );
