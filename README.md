@@ -1,37 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-
-https://emmanuelnyatepecom.vercel.app
+# emmanuelnyatepe.com
 
-## Getting Started
+My portfolio: selected work, case studies, experience and contact details.
 
-First, run the development server:
+Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS 4. The only runtime dependencies are `next`, `react` and `react-dom`.
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm check        # prettier + eslint + typecheck
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set `NEXT_PUBLIC_SITE_URL` in production so canonical URLs, the sitemap and social cards point at the real domain.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Path                   | What                                                              |
+| ---------------------- | ----------------------------------------------------------------- |
+| `src/config/site.ts`   | Name, email, links, URL. One place to change personal details.    |
+| `src/content/`         | Projects, experience and stack as typed data. Edit content here.  |
+| `src/assets/`          | Images, statically imported so Next.js knows their size and blur. |
+| `src/components/home/` | One component per homepage section.                               |
+| `src/app/work/[slug]/` | Case studies, generated at build time from featured projects.     |
+| `src/app/globals.css`  | Design tokens and the three custom utilities.                     |
 
-## Learn More
+## Decisions
 
-To learn more about Next.js, take a look at the following resources:
+- **Server Components by default.** Only the Accra clock and the copy-email button ship JavaScript.
+- **Content is data, not markup.** A featured project is a discriminated union, so a project can't be featured without the fields its case study needs.
+- **The design rules are enforced by the theme.** Border radius, shadows and Tailwind's default palette are removed in `globals.css`, so `rounded-xl` or `bg-blue-500` produce no CSS at all.
+- **No animation libraries.** Motion is limited to short CSS transitions and respects `prefers-reduced-motion`.
+- **Every page is static.** Case studies use `generateStaticParams` with `dynamicParams = false`, so unknown slugs return a real 404.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding a project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add an entry to `src/content/projects.ts`. Set `featured: true` and the TypeScript compiler will ask for a role, figures, overview and a list of what you built. The case study page, sitemap entry and social card are generated from that entry.
